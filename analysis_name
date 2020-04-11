@@ -1,0 +1,13 @@
+for gear in fw.get_all_gears():
+  print(gear.gear.name, ':', gear.gear.label)
+
+fmriprep = fw.lookup('gears/fmriprep-fwheudiconv')
+print(fmriprep.gear.label)
+
+import datetime
+
+now=datetime.datetime.now().strftime("%Y-%m-%d_%H:%M")
+
+analysis_label = 'bold_preproc_{}_{}_{}'.format(now, fmriprep.gear.name, fmriprep.gear.version)
+
+print(analysis_label)
