@@ -1,0 +1,18 @@
+group = ''
+project = ''
+subject = ''
+session = ''
+
+#get the gear
+gear=fw.lookup('gears/dcm2niix')
+
+session = fw.lookup('{}/{}/{}/{}'.format(group,project,subject,session))
+
+acqs = session.acquisitions.find()
+proposal = gear.propose_batch(acqs)
+
+# Run the batch job
+jobs=proposal.run()
+
+# Find matching acquisitions, using regular expression match on label
+#proposal = gear.propose_batch(acqs, config={'merge2d': 'y'})
